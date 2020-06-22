@@ -1,0 +1,32 @@
+{
+  "name": "inventory",
+  "version": "1.0.0",
+  "description": "Inventory System for our Mini Store",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niikkiin/inventory.git"
+  },
+  "author": "Nikki Abarca",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/niikkiin/inventory/issues"
+  },
+  "homepage": "https://github.com/niikkiin/inventory#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.19"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
+  }
+}

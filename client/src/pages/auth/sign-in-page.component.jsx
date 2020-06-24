@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
+// styled components
 import { AuthLink, Title, AuthWithSocialMedia, OrLine } from './auth-pages.styles';
+
+// proptypes
+import PropTypes from 'prop-types'
 
 // components
 import { SignInAndSignUpContainer } from 'components/sign-in-and-sign-up-container/sign-in-and-sign-up-container.component';
@@ -8,9 +12,14 @@ import { CustomButton } from 'components/custom-button/custom-button.component';
 import { FormInput } from 'components/form-input/form-input.component';
 
 // router
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
-const SignInPage = () => {
+// redux
+import { connect } from 'react-redux';
+import { login } from 'store/actions/auth.actions';
+
+
+const SignInPage = ({ login, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
@@ -20,13 +29,17 @@ const SignInPage = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		console.log('Successfully Logged In');
+		login(email, password);
 	};
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
+
+	// redirect if logged in
+	if(isAuthenticated) {
+		return <Redirect to='/dashboard' />
+	}
 
 	return (
 		<SignInAndSignUpContainer welcomeText='Welcome Back To Our' storeName='STORE'>
@@ -72,4 +85,13 @@ const SignInPage = () => {
 	);
 };
 
-export default SignInPage;
+SignInPage.propTypes = {
+	login: PropTypes.func.isRequired,
+	isAuthenticated: PropTypes.bool
+}
+
+const mapStateToProps = state => ({
+	isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(SignInPage);

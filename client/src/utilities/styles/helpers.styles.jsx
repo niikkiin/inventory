@@ -37,6 +37,13 @@ export const displayRowCenter = css`
 	justify-content: center;
 `;
 
+export const displayCenterSpaceBetween = css`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 1.6rem;
+`;
+
 // SECTION ANIMATIONS
 export const shrinkLabelStyles = css`
 	top: -1.8rem;

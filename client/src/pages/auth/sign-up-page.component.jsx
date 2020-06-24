@@ -14,11 +14,12 @@ import PropTypes from 'prop-types'
 // redux
 import { connect } from 'react-redux';
 import { setAlert } from 'store/actions/alert.actions';
+import { register } from 'store/actions/auth.actions';
 
 // router
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
-const SignUpPage = ({ setAlert }) => {
+const SignUpPage = ({ setAlert, register, isAuthenticated }) => {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -34,13 +35,18 @@ const SignUpPage = ({ setAlert }) => {
 		if (password !== password2) {
 			setAlert('Passwords do not match', 'danger');
 		} else {
-			console.log(formData);
+			register({ name, email, password });
 		}
 	};
 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
+
+	// redirect logged in
+	if(isAuthenticated) {
+		return <Redirect to='/dashboard' />
+	}
 
 	return (
 		<SignInAndSignUpContainer welcomeText='Welcome To Our' storeName='STORE'>
@@ -106,7 +112,13 @@ const SignUpPage = ({ setAlert }) => {
 };
 
 SignUpPage.propTypes = {
-	setAlert: PropTypes.func.isRequired
+	setAlert: PropTypes.func.isRequired,
+	register: PropTypes.func.isRequired,
+	isAuthenticated: PropTypes.bool
 };
 
-export default connect(null, { setAlert })(SignUpPage);
+const mapStateToProps = state => ({
+	isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(SignUpPage);

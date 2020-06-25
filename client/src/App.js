@@ -17,6 +17,8 @@ import setAuthToken from 'utilities/auth/set-auth-token.utilities';
 const SignInPage = React.lazy(() => import('pages/auth/sign-in-page.component'));
 const SignUpPage = React.lazy(() => import('pages/auth/sign-up-page.component'));
 const DashboardPage = React.lazy(() => import('pages/dashboard/dashboard.component'));
+const CreateProfilePage = React.lazy(() => import('pages/profile/create-profile.component'));
+const UpdateProfilePage = React.lazy(() => import('pages/profile/update-profile.component'));
 
 if(localStorage.token) {
 	setAuthToken(localStorage.token);
@@ -37,6 +39,9 @@ const App = () => {
 						<Route exact path='/' component={SignInPage} />
 						<Route exact path='/register' component={SignUpPage} />
 						<PrivateRoute exact path='/dashboard' component={DashboardPage} />
+						<PrivateRoute exact path='/create-profile' component={CreateProfilePage} />
+						<PrivateRoute exact path='/edit-profile' component={UpdateProfilePage} />
+
 					</Switch>
 				</Suspense>
 			</Router>

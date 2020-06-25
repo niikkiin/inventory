@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
-import { breakpoints } from 'utilities/styles/helpers.styles';
+import { breakpoints, helpers } from 'utilities/styles/helpers.styles';
 
 const { desktop, highResDesktop } = breakpoints;
+const { mainTint } = helpers;
 
 export const Container = styled.div`
 	.main-header {
@@ -67,5 +68,14 @@ export const Container = styled.div`
 
 	.card:nth-child(3) {
 		height: 265px;
+	}
+
+	.set-up-profile {
+		background-color: #f8d6f8;
+		margin: 20px;
+		padding: 20px;
+
+		color: ${mainTint};
+		font-size: 1.6rem;
 	}
 `;

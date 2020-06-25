@@ -7,11 +7,11 @@ import { HeaderContainer } from './header.styles';
 import { getCurrentDate } from 'utilities/date/date.component';
 
 // components
-import Profile from 'components/profile-dropdown/profile-dropdown.component';
+import ProfileDropDown from 'components/profile-dropdown/profile-dropdown.component';
 
 export const Header = () => (
 	<HeaderContainer>
 		<div className='date'>{getCurrentDate()}</div>
-		<Profile />
+		<ProfileDropDown />
 	</HeaderContainer>
 );

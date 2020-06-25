@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 // router
 import { Link } from 'react-router-dom';
 
-const Profile = ({ logout }) => {
+const ProfileDropDown = ({ logout }) => {
 	return (
 		<Container>
 			<div className='half'>
@@ -34,9 +34,9 @@ const Profile = ({ logout }) => {
 							</a>
 						</li>
 						<li>
-							<a href='#!'>
-								<i className='mdi mdi-account'></i>Account
-							</a>
+							<Link to='/edit-profile'>
+								Edit Profile
+							</Link>
 						</li>
 						<li>
 							<a href='#!'>
@@ -55,8 +55,8 @@ const Profile = ({ logout }) => {
 	);
 };
 
-Profile.propTypes = {
+ProfileDropDown.propTypes = {
 	logout: PropTypes.func.isRequired,
 };
 
-export default connect(null, { logout })(Profile);
+export default connect(null, { logout })(ProfileDropDown);

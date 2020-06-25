@@ -14,7 +14,7 @@ import { DashboardContainer } from 'components/dashboard-container/dashboard-con
 import { createProfile } from 'store/actions/profile.actions';
 
 // router
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 // components
 import { FormInput } from 'components/form-input/form-input.component';

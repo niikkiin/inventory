@@ -5,6 +5,9 @@ import { Container } from './dashboard-content.styles';
 // router
 import { Link } from 'react-router-dom';
 
+// components
+import { CustomButton } from 'components/custom-button/custom-button.component';
+
 export const DashboardContent = ({ user, profile }) => {
 	return (
 		<Container>
@@ -41,7 +44,15 @@ export const DashboardContent = ({ user, profile }) => {
 
 			<div class='main-cards'>
 				<div class='card'>Card</div>
-				<div class='card'>Card</div>
+				<div class='card'>
+					NOTES
+					<Link to='/create-note'>
+						<CustomButton notes >
+							Add new note
+						</CustomButton>
+					</Link>
+					<Link to='/view-notes'>View Notes</Link>
+				</div>
 				<div class='card'>Card</div>
 			</div>
 		</Container>

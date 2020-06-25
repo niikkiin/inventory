@@ -12,7 +12,7 @@ import { DashboardContainer } from 'components/dashboard-container/dashboard-con
 import { createProfile, getCurrentProfile } from 'store/actions/profile.actions';
 
 // router
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 // components
 import { FormInput } from 'components/form-input/form-input.component';
@@ -33,7 +33,8 @@ const UpdateProfilePage = ({ profile: { profile, loading }, createProfile, getCu
       status: loading || !profile.status ? '' : profile.status,
       location: loading || !profile.location ? '' : profile.location,
       bio: loading || !profile.bio ? '' : profile.bio
-    });
+		});
+	// eslint-disable-next-line
   }, [loading]);
 
 	const { status, location, bio } = formData;

@@ -8,6 +8,7 @@ export const helpers = {
 	accentColor: '#1726C7',
 
 	mainTint: '#525966',
+	mainRGB: '165, 174, 214',
 
 	dangerColor: '#800d46',
 	successColor: '#27F9A2',

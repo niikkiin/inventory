@@ -1,55 +1,22 @@
 import React from 'react';
 
-import { Container, Sidebar, Main, Header, Footer } from './dashboard.styles';
+import { Container, Main } from './dashboard.styles';
+
+// components
+import { Header } from 'components/header/header.component';
+import { DashboardContent } from 'components/dashboard-content/dashboard-content.component';
+import { Footer } from 'components/footer/footer.component';
+import { Sidebar } from 'components/sidebar/sidebar.component';
 
 const DashboardPage = () => {
 	return (
 		<Container>
-			<Sidebar>
-				<ul className='list'>
-					<li className='list-item'>Dashboard</li>
-					<li className='list-item'>Items</li>
-				</ul>
-			</Sidebar>
-			<Header>
-				<div className='date'>Date</div>
-				<div className='profile'>Profile</div>
-			</Header>
+			<Sidebar />
+			<Header />
 			<Main>
-				<div class='main-header'>
-					<div class='main-header__heading'>Hello User</div>
-					<div class='main-header__updates'>Recent Items</div>
-				</div>
-
-				<div class='main-overview'>
-					<div class='overviewcard'>
-						<div class='overviewcard__icon'>Overview</div>
-						<div class='overviewcard__info'>Card</div>
-					</div>
-					<div class='overviewcard'>
-						<div class='overviewcard__icon'>Overview</div>
-						<div class='overviewcard__info'>Card</div>
-					</div>
-					<div class='overviewcard'>
-						<div class='overviewcard__icon'>Overview</div>
-						<div class='overviewcard__info'>Card</div>
-					</div>
-					<div class='overviewcard'>
-						<div class='overviewcard__icon'>Overview</div>
-						<div class='overviewcard__info'>Card</div>
-					</div>
-				</div>
-
-				<div class='main-cards'>
-					<div class='card'>Card</div>
-					<div class='card'>Card</div>
-					<div class='card'>Card</div>
-				</div>
+        <DashboardContent />
 			</Main>
-			<Footer>
-				<div className='copyright'>&copy; {new Date().getFullYear()}</div>
-				<div className='signature'>Made with ❤ by Nikki</div>
-			</Footer>
+			<Footer />
 		</Container>
 	);
 };

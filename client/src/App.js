@@ -1,8 +1,10 @@
 import React, { Suspense, useEffect } from 'react';
 
-// router
+// routing
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PrivateRoute from 'routing/private-route.routing';
 
+// global styles
 import { GlobalStyles } from 'utilities/styles/global.styles';
 
 
@@ -34,7 +36,7 @@ const App = () => {
 					<Switch>
 						<Route exact path='/' component={SignInPage} />
 						<Route exact path='/register' component={SignUpPage} />
-						<Route exact path='/dashboard' component={DashboardPage} />
+						<PrivateRoute exact path='/dashboard' component={DashboardPage} />
 					</Switch>
 				</Suspense>
 			</Router>

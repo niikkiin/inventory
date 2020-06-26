@@ -34,6 +34,16 @@ export const Container = styled.div`
 		li {
 			padding: 20px 20px 20px 40px;
 			color: #ddd;
+			
+			&.active,
+			.active {
+				background-color: rgba(255, 255, 255, 0.2);
+			}
+
+			.link-list {
+				text-decoration: none;
+				color: #ddd;
+			}
 
 			&:hover {
 				background-color: rgba(255, 255, 255, 0.2);

@@ -23,6 +23,9 @@ router.post(
 			check('category', 'Category is required.').not().isEmpty(),
 			check('quantity', 'Quantity is required.').not().isEmpty(),
 			check('unit', 'Unit is required.').not().isEmpty(),
+			check('purchasePricePerUnit', 'Purchase Price per Unit is required.').not().isEmpty(),
+			check('sellingPricePerUnit', 'Selling Price per Unit is required.').not().isEmpty(),
+			check('lowStockReminder', 'Low Stock Reminder is required.').not().isEmpty()
 		],
 	],
 	async (req, res) => {
@@ -35,15 +38,20 @@ router.post(
 		try {
 			const user = await (await User.findById(req.user.id)).isSelected('-password');
 
-			const { name, category, quantity, unit, description, image, status, date } = req.body;
+			const { name, category, quantity, unit, purchasePricePerUnit, sellingPricePerUnit, barcode, lowStockReminder, description, image, quantityLeft, status, date } = req.body;
 
 			const newItem = new Item({
 				name,
 				category,
 				quantity,
 				unit,
+				purchasePricePerUnit,
+				sellingPricePerUnit,
+				barcode,
+				lowStockReminder,
 				description,
 				image,
+				quantityLeft,
 				status,
 				date,
 			});

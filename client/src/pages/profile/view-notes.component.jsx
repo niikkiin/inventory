@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-// styled components
-import { Title } from './profile.styles';
-
 // routers
 // import { Link, withRouter } from 'react-router-dom';
 
@@ -22,8 +19,7 @@ const ViewNotesPage = ({ getCurrentProfile, profile: { profile, loading } }) => 
 	}, []);
 
 	const content = (
-		<DashboardContainer>
-			<Title>Notes</Title>
+		<DashboardContainer title='Notes'>
 			{profile.notes.map((note) => {
 				const { _id, text, date } = note;
 				return (

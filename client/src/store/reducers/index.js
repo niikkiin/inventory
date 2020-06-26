@@ -4,9 +4,11 @@ import {combineReducers} from 'redux';
 import alert from 'store/reducers/alert.reducer';
 import auth from 'store/reducers/auth.reducer';
 import profile from 'store/reducers/profile.reducer';
+import item from 'store/reducers/items.reducer';
 
 export default combineReducers({
   alert,
   auth,
-  profile
+  profile,
+  item
 });

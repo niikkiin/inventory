@@ -3,9 +3,6 @@ import React, { useState, useEffect } from 'react';
 // proptypes
 import PropTypes from 'prop-types';
 
-// styled components
-import { Title } from './profile.styles';
-
 // redux
 import { connect } from 'react-redux';
 import { DashboardContainer } from 'components/dashboard-container/dashboard-container.component';
@@ -49,8 +46,7 @@ const UpdateProfilePage = ({ profile: { profile, loading }, createProfile, getCu
 	};
 
 	return (
-		<DashboardContainer>
-			<Title>Profile</Title>
+		<DashboardContainer title='Profile'>
 			<Alert />
 			<form className='form' onSubmit={(e) => handleSubmit(e)} noValidate>
 				<FormInput

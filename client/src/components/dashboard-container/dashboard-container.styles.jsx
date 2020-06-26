@@ -3,6 +3,10 @@ import { breakpoints } from 'utilities/styles/helpers.styles';
 
 const { tabletLandscape, desktop, highResDesktop } = breakpoints;
 
+export const Title = styled.h1`
+  font-size: 3.5rem;
+`;
+
 export const Container = styled.div`
 	display: grid;
 	grid-template-columns: 1fr; /* Side nav is hidden on mobile */

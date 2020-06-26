@@ -7,6 +7,10 @@ const ItemSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: 'user',
     },
+    date: {
+      type: Date,
+      default: Date.now
+    },
     name: {
       type: String,
       required: true
@@ -25,6 +29,28 @@ const ItemSchema = new Schema(
       type: String,
       required: true
     },
+    purchasePricePerUnit: {
+      type: Number,
+      required: true,
+      min: 0,
+      default: 0
+    },
+    sellingPricePerUnit: {
+      type: Number,
+      required: true,
+      min: 0,
+      default: 0
+    },
+    barcode: {
+      type: String,
+      required: true
+    },
+    lowStockReminder: {
+      type: Number,
+      required: true,
+      min: 0,
+      default: 0
+    },
     description: {
       type: String,
       default: "none"
@@ -32,12 +58,13 @@ const ItemSchema = new Schema(
     image: {
       type: String
     },
+    quantityLeft: {
+      type: Number,
+      min: 0,
+      default: 0
+    },
     status: {
       type: String
-    },
-    date: {
-      type: Date,
-      default: Date.now
     }
 	},
 	{

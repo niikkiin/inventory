@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-// styled components
-import { Title } from './profile.styles';
-
-// routers
-// import { Link, withRouter } from 'react-router-dom';
-
 // components
 import { DashboardContainer } from 'components/dashboard-container/dashboard-container.component';
 import { CustomButton } from 'components/custom-button/custom-button.component';
@@ -36,8 +30,7 @@ const CreateNotesPage = ({ addNote, history }) => {
 	};
 
 	return (
-		<DashboardContainer>
-			<Title>Notes</Title>
+		<DashboardContainer title='Notes'>
 			<Alert />
 			<form className='form' onSubmit={(e) => handleSubmit(e)} noValidate>
 				<FormInput

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // redux
 import { connect } from 'react-redux';
-import { addItem } from 'store/actions/items.actions';
+import { getItem, updateItem } from 'store/actions/items.actions';
 
 // components
 import { FormInput } from 'components/form-input/form-input.component';
@@ -11,7 +11,7 @@ import { CustomButton } from 'components/custom-button/custom-button.component';
 import { DashboardContainer } from 'components/dashboard-container/dashboard-container.component';
 import Alert from 'components/alert/alert.component';
 
-const AddItemPage = ({ addItem }) => {
+const UpdateItemPage = ({ updateItem, getItem, item: { item, loading }, match }) => {
 	const [formData, setFormData] = useState({
 		name: '',
 		category: '',
@@ -40,9 +40,30 @@ const AddItemPage = ({ addItem }) => {
 		quantityLeft,
 	} = formData;
 
+	useEffect(() => {
+		getItem(match.params.id);
+
+		setFormData({
+			name: loading || !item.name ? '' : item.name,
+			category: loading || !item.category ? '' : item.category,
+			quantity: loading || !item.quantity ? '' : item.quantity,
+			unit: loading || !item.unit ? '' : item.unit,
+			purchasePricePerUnit: loading || !item.purchasePricePerUnit ? '' : item.purchasePricePerUnit,
+			sellingPricePerUnit: loading || !item.sellingPricePerUnit ? '' : item.sellingPricePerUnit,
+			barcode: loading || !item.barcode ? '' : item.barcode,
+			lowStockReminder: loading || !item.lowStockReminder ? '' : item.lowStockReminder,
+			description: loading || !item.description ? '' : item.description,
+			image: loading || !item.image ? '' : item.image,
+			quantityLeft: loading || !item.quantityLeft ? '' : item.quantityLeft,
+		});
+		// eslint-disable-next-line
+	}, [loading, getItem]);
+
+	
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		addItem(formData);
+		updateItem(formData, match.params.id);
 	};
 
 	const handleChange = (e) => {
@@ -50,8 +71,9 @@ const AddItemPage = ({ addItem }) => {
 	};
 
 	return (
-		<DashboardContainer title='Adding Item'>
+		<DashboardContainer title='Updating Item'>
 			<Alert />
+
 			<form className='form' onSubmit={(e) => handleSubmit(e)} noValidate>
 				<FormInput
 					name='name'
@@ -158,8 +180,14 @@ const AddItemPage = ({ addItem }) => {
 	);
 };
 
-AddItemPage.propTypes = {
-	addItem: PropTypes.func.isRequired,
+UpdateItemPage.propTypes = {
+	item: PropTypes.object.isRequired,
+  getItem: PropTypes.func.isRequired,
+  updateItem: PropTypes.func.isRequired
 };
 
-export default connect(null, { addItem })(AddItemPage);
+const mapStateToProps = (state) => ({
+	item: state.item,
+});
+
+export default connect(mapStateToProps, { getItem, updateItem })(UpdateItemPage);

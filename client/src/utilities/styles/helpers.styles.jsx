@@ -10,8 +10,9 @@ export const helpers = {
 	mainTint: '#525966',
 	mainRGB: '165, 174, 214',
 
-	dangerColor: '#800d46',
-	successColor: '#27F9A2',
+	successColor: '#1DBE17',
+	warningColor: '#E69316',
+	dangerColor: '#BE174E',
 	successHighlightColor: '#083623',
 
 	boxShadow: '10px 25px 45px 0px rgba(0,0,0,0.25)',

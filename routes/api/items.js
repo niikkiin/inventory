@@ -9,7 +9,6 @@ const auth = require('../../middleware/auth');
 
 // models
 const Item = require('../../models/Item');
-const User = require('../../models/User');
 
 // @route     POST api/items
 // @desc      Add an item
@@ -36,7 +35,7 @@ router.post(
 		}
 
 		try {
-			const user = await (await User.findById(req.user.id)).isSelected('-password');
+			// const user = await (await User.findById(req.user.id)).isSelected('-password');
 
 			const { name, category, quantity, unit, purchasePricePerUnit, sellingPricePerUnit, barcode, lowStockReminder, description, image, quantityLeft, status, date } = req.body;
 
@@ -52,10 +51,10 @@ router.post(
 				description,
 				image,
 				quantityLeft,
-				status,
 				date,
 			});
 
+			
 			const item = await newItem.save();
 
 			res.json(item);
@@ -94,6 +93,44 @@ router.get('/:id', auth, async (req, res) => {
 		}
 
 		res.json(item	);
+	} catch (err) {
+		console.error(err.message);
+		if(err.kind === 'ObjectId'){
+			return res.status(404).json({ errors: [{ msg: 'Item not found.' }] });
+		}
+		res.status(500).send('Server Error.');
+	}
+});
+
+// @route     POST api/items/update/:id
+// @desc      Update an item
+// @access    Private
+router.post('/update/:id', auth, async (req, res) => {
+	try {
+		const item = await Item.findById(req.params.id);
+
+		if(!item){
+			return res.status(404).json({ errors: [{ msg: 'Item not found.' }] });
+		}
+		const { name, category, quantity, unit, purchasePricePerUnit, sellingPricePerUnit, barcode, lowStockReminder, description, image, quantityLeft, status, date } = req.body;
+
+		item.name = name;
+		item.category = category;
+		item.quantity = quantity;
+		item.unit = unit;
+		item.purchasePricePerUnit = purchasePricePerUnit;
+		item.sellingPricePerUnit = sellingPricePerUnit;
+		item.barcode = barcode;
+		item.lowStockReminder = lowStockReminder;
+		item.description = description;
+		item.image = image;
+		item.quantityLeft = quantityLeft;
+		item.status = status;
+		item.date = date;
+
+		await item.save();
+		res.json(item);
+
 	} catch (err) {
 		console.error(err.message);
 		if(err.kind === 'ObjectId'){

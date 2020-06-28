@@ -27,6 +27,7 @@ const CreateNotesPage = React.lazy(() => import('pages/profile/create-notes.comp
 const ViewNotesPage = React.lazy(() => import('pages/profile/view-notes.component'));
 const ViewItemsPage = React.lazy(() => import('pages/items/view-items.component'));
 const AddItemPage = React.lazy(() => import('pages/items/add-item.component'));
+const UpdateItemPage = React.lazy(() => import('pages/items/update-item.component'));
 
 if(localStorage.token) {
 	setAuthToken(localStorage.token);
@@ -57,6 +58,7 @@ const App = () => {
 						{/* ITEMS */}
 						<PrivateRoute exact path='/items' component={ViewItemsPage} />
 						<PrivateRoute exact path='/items/add' component={AddItemPage} />
+						<PrivateRoute exact path='/items/update/:id' component={UpdateItemPage} />
 
 					</Switch>
 				</Suspense>

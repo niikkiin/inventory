@@ -2,7 +2,9 @@ import {
   GET_ITEMS,
   ITEM_ERROR,
   DELETE_ITEM,
-  ADD_ITEM
+  ADD_ITEM,
+  UPDATE_ITEM,
+  GET_ITEM
 } from 'store/actions/types.actions';
 
 const initialState = {
@@ -22,7 +24,14 @@ export default function(state = initialState, action) {
         items: payload,
         loading: false
       }
-    case ADD_ITEM:
+    case GET_ITEM:
+      return {
+        ...state,
+        item: payload,
+        loading: false
+      }
+      case ADD_ITEM:
+      case UPDATE_ITEM:
       return {
         ...state,
         items: [payload, ...state.items],

@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { getItems, deleteItem } from 'store/actions/items.actions';
 import { CustomButton } from 'components/custom-button/custom-button.component';
 import { Link } from 'react-router-dom';
+import { Badge } from 'components/badge/badge.component';
 
 const ViewItemsPage = ({ getItems, deleteItem, item: { items, loading } }) => {
 	useEffect(() => {
@@ -59,13 +60,29 @@ const ViewItemsPage = ({ getItems, deleteItem, item: { items, loading } }) => {
 						description,
 						image,
 						quantityLeft,
-						status,
 						_id
 					} = item;
+
+					const getStatus = () => {
+						if(quantityLeft <= lowStockReminder) {
+							if (quantityLeft === 0){
+								return(<Badge classes='danger'>Out of Stock</Badge>);
+							} else {
+								return(<Badge classes='warning'>Low Stock</Badge>);
+							}
+						} else {
+							return(<Badge classes='success'>In Stock</Badge>);
+						}
+					}
+
 					return (
 						<tr key={_id}>
 							<td>{date}</td>
-							<td>{name}</td>
+							<td>
+								<Link to={`items/update/${_id}`}>
+									{name}
+								</Link>
+							</td>
 							<td>{category}</td>
 							<td>{quantity}</td>
 							<td>{unit}</td>
@@ -76,7 +93,7 @@ const ViewItemsPage = ({ getItems, deleteItem, item: { items, loading } }) => {
 							<td>{description}</td>
 							<td>{image}</td>
 							<td>{quantityLeft}</td>
-							<td>{status}</td>
+							<td>{getStatus()}</td>
               <td onClick={e => deleteItem(_id)}>remove</td>
 						</tr>
 					);

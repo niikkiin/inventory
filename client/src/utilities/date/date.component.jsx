@@ -24,3 +24,11 @@ export function getCurrentDate(separator = ', ', space = ' ') {
 	// return `${year}${separator}${month < 10 ? `0${month}` : `${month}`}${separator}${date}`;
 	return `${monthName}${space}${date}${separator}${year}`;
 }
+const options = {
+	year: 'numeric', month: 'numeric', day: 'numeric',
+	hour12: false,
+};
+
+export function formatDate(date) {
+	return Intl.DateTimeFormat('en-GB', options).format(new Date(date));
+}

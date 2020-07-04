@@ -9,6 +9,7 @@ import { getItem, updateItem } from 'store/actions/items.actions';
 import { FormInput } from 'components/form-input/form-input.component';
 import { CustomButton } from 'components/custom-button/custom-button.component';
 import { DashboardContainer } from 'components/dashboard-container/dashboard-container.component';
+import Spinner from 'components/spinner/spinner.component';
 import Alert from 'components/alert/alert.component';
 
 const UpdateItemPage = ({ updateItem, getItem, item: { item, loading }, match }) => {
@@ -70,7 +71,7 @@ const UpdateItemPage = ({ updateItem, getItem, item: { item, loading }, match })
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
-	return (
+	return loading && item ? <Spinner /> : (
 		<DashboardContainer title='Updating Item'>
 			<Alert />
 

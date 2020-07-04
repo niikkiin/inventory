@@ -5,8 +5,14 @@ import {
 } from './badge.styles';
 
 
-export const Badge = ({children, classes}) => (
-  <BadgeContainer className={classes}>
-    {children}
-  </BadgeContainer>
-)
+export const Badge = ({children, color, classes}) => {
+  
+  return (
+    <BadgeContainer className={classes} 
+          // style={{backgroundColor: {getColor(color)}}}
+          style={color ? {backgroundColor:color} : {backgroundColor:'#A0A6BB'}}
+    >
+      {children}
+    </BadgeContainer>
+  );
+}

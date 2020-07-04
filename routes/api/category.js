@@ -18,8 +18,23 @@ router.post(
 	[
 		auth,
 		[
-			check('item_type', 'Category name is required.').not().isEmpty(),
 			check('color', 'Color is required.').not().isEmpty(),
+			check('item_type', 'Category name is required.')
+				.not()
+				.isEmpty()
+				.custom((value, { req }) => {
+					return new Promise((resolve, reject) => {
+						Category.findOne({ item_type: req.body.item_type }, function (err, item_type) {
+							if (err) {
+								reject(new Error('Server Error'));
+							}
+							if (Boolean(item_type)) {
+								reject(new Error('Catergory already exists.'));
+							}
+							resolve(true);
+						});
+					});
+				}),
 		],
 	],
 	async (req, res) => {
@@ -31,10 +46,6 @@ router.post(
 
 		try {
 			const { item_type, color } = req.body;
-
-			if (item_type) {
-				return res.status(400).json({ errors: [{ msg: 'Category already exist.' }] });
-			}
 
 			const newCategory = new Category({
 				item_type,
@@ -63,6 +74,46 @@ router.get('/', auth, async (req, res) => {
 		res.json(categories);
 	} catch (err) {
 		console.error(err.message);
+		res.status(500).send('Server Error.');
+	}
+});
+
+// @route     GET api/categories/:id
+// @desc      Get item by id
+// @access    Private
+router.get('/:id', auth, async (req, res) => {
+	try {
+		const category = await Category.findById(req.params.id);
+
+		if(!category){
+			return res.status(404).json({ errors: [{ msg: 'Category not found.' }] });
+		}
+
+		res.json(category);
+	} catch (err) {
+		console.error(err.message);
+		if(err.kind === 'ObjectId'){
+			return res.status(404).json({ errors: [{ msg: 'Category not found.' }] });
+		}
+		res.status(500).send('Server Error.');
+	}
+});
+
+// @route     DELETE api/categories/:id
+// @desc      Delete item by id
+// @access    Private
+router.delete('/:id', auth, async (req, res) => {
+	try {
+		const category = await Category.findById(req.params.id);
+
+		await category.remove();
+
+		res.json({ msg: 'Category removed.'});
+	} catch (err) {
+		console.error(err.message);
+		if(err.kind === 'ObjectId'){
+			return res.status(404).json({ errors: [{ msg: 'Category not found.' }] });
+		}
 		res.status(500).send('Server Error.');
 	}
 });

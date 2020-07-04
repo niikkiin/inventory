@@ -14,6 +14,9 @@ export const Sidebar = () => {
 				<ListItemLink activeOnlyWhenExact={true} to='/items'>
 					Items
 				</ListItemLink>
+				<ListItemLink activeOnlyWhenExact={true} to='/categories'>
+					Categories
+				</ListItemLink>
 			</ul>
 		</Container>
 	);

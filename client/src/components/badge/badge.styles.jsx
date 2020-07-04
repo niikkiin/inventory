@@ -9,8 +9,12 @@ export const BadgeContainer = styled.div`
   text-transform: uppercase;
   border-radius: 1rem;
   font-weight: bold;
+  font-size: 1.3rem;
   color: ${secondaryColor};
 
+  display: flex;
+  justify-content: center;
+  min-width: 8.2rem;
   &.success {
     background-color: ${successColor};
   }

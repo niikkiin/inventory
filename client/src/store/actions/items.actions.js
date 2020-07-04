@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-// import { setAlert } from 'store/actions/alert.actions';
-
 import { GET_ITEMS, ITEM_ERROR, DELETE_ITEM, ADD_ITEM, UPDATE_ITEM, GET_ITEM } from 'store/actions/types.actions';
 
 import { setAlert } from './alert.actions';
@@ -23,7 +21,7 @@ export const getItems = () => async (dispatch) => {
 	}
 };
 
-// Get items
+// Get item
 export const getItem = (id) => async (dispatch) => {
 	try {
 		const res = await axios.get(`/api/items/${id}`);
@@ -43,7 +41,7 @@ export const getItem = (id) => async (dispatch) => {
 // Delete item
 export const deleteItem = (id) => async (dispatch) => {
 	try {
-		const res = await axios.delete(`/api/items/${id}`);
+		await axios.delete(`/api/items/${id}`);
 
 		dispatch({
 			type: DELETE_ITEM,

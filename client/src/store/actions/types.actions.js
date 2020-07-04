@@ -25,3 +25,10 @@ export const ITEM_ERROR = 'ITEM_ERROR';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const ADD_ITEM = 'ADD_ITEM';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
+
+// categories
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_CATEGORY = 'GET_CATEGORY';
+export const CATEGORY_ERROR = 'CATEGORY_ERROR';
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';

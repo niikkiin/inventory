@@ -6,7 +6,7 @@ const { mainTint, secondaryColor, accentColor} = helpers;
 export const CustomButtonContainer = styled.button`
   min-width: 10rem;
   width: auto;
-  margin: 4rem auto  2rem auto;
+  margin: 1rem auto;
   display: inline-block;
   height: 5rem;
   letter-spacing: 0.1rem;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { helpers, breakpoints, tableStyles } from 'utilities/styles/helpers.styles';
 
-const { mainTint } = helpers;
+const { mainTint, dangerColor, accentColor } = helpers;
 const { tabletPortrait, phone } = breakpoints;
 
 export const TableContainer = styled.table`
@@ -29,6 +29,27 @@ export const TableContainer = styled.table`
 		border: 1px solid #ccc;
 		text-align: left;
 		font-size: 18px;
+	}
+	a,
+	a:visited {
+		color: ${mainTint};
+		text-decoration: none;
+	}
+	.icon {
+		font-size: 2.4rem;
+		cursor: pointer;
+	}
+	.delete-icon {
+		margin-left: 1rem;
+		&:hover {
+			color: ${dangerColor};
+		}
+	}
+	.update-icon{
+		margin-left: 0.4rem;
+		&:hover {
+			color: ${accentColor};
+		}
 	}
 
 	@media ${phone} {

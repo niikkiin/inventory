@@ -28,6 +28,9 @@ const ViewNotesPage = React.lazy(() => import('pages/profile/view-notes.componen
 const ViewItemsPage = React.lazy(() => import('pages/items/view-items.component'));
 const AddItemPage = React.lazy(() => import('pages/items/add-item.component'));
 const UpdateItemPage = React.lazy(() => import('pages/items/update-item.component'));
+const ViewCategoriesPage = React.lazy(() => import('pages/categories/view-categories.component'));
+const AddCategoryPage = React.lazy(() => import('pages/categories/add-category.component'));
+const ViewIndividualCategoryPage = React.lazy(() => import('pages/categories/view-ind-category.component'));
 
 if(localStorage.token) {
 	setAuthToken(localStorage.token);
@@ -59,6 +62,11 @@ const App = () => {
 						<PrivateRoute exact path='/items' component={ViewItemsPage} />
 						<PrivateRoute exact path='/items/add' component={AddItemPage} />
 						<PrivateRoute exact path='/items/update/:id' component={UpdateItemPage} />
+
+						{/* CATEGORIES */}
+						<PrivateRoute exact path='/categories' component={ViewCategoriesPage} />
+						<PrivateRoute exact path='/categories/add' component={AddCategoryPage} />
+						<PrivateRoute exact path='/category/:id' component={ViewIndividualCategoryPage} />
 
 					</Switch>
 				</Suspense>
